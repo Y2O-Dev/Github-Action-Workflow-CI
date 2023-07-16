@@ -1,8 +1,8 @@
 ---
-name: Build and Push Nodejs Image to AWS ECR
+name: Nodejs Image to AWS ECR
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 env:
   aws_region: us-east-1
@@ -34,12 +34,11 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
-    - name: Build, Tag, and Push the Image to Amazon ECR
-      id: build-image
+    - name: Build-Tag-Push Image to ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: nodejsapp
-        IMAGE_TAG: v1
+        IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
