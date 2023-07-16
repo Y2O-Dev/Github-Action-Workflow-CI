@@ -23,7 +23,7 @@ jobs:
     
     - name: Node dependency installation
       run: |
-        - npm install
+        - npm ci
         - npm run test
     # - run: npm test
 
