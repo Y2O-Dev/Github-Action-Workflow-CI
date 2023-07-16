@@ -20,7 +20,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm ci
+    
+    - name: Node dependency installation
+      run: npm ci
     # - run: npm test
 
     - name: Configure AWS credentials
