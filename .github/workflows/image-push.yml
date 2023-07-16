@@ -22,11 +22,8 @@ jobs:
         node-version: 18
     
     - name: Node dependency installation
-      run: |
-        npm install
-        npm run test
-    # - run: npm test
-
+      run: npm ci
+    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
